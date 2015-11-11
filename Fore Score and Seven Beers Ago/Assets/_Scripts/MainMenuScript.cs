@@ -7,6 +7,12 @@ public class MainMenuScript : MonoBehaviour {
 	public Button playButton;
 	public Button exitButton;
 
+    //index value of first Single Player Level
+    private int SPIndexStart = 1;
+
+    //index value of first Multi Player Level
+    //private int MPIndexStart = 4;
+
 	// Use this for initialization
 	void Start () {
 
@@ -22,7 +28,7 @@ public class MainMenuScript : MonoBehaviour {
 
 	public void StartGame() {
 
-		Application.LoadLevel (1);
+		Application.LoadLevel (SPIndexStart);
 
 	}
 
