@@ -2,14 +2,14 @@
 using System.Collections;
 
 public class Player : MonoBehaviour {
-
-    public float speed;
-
     private Rigidbody rb;
     private int currentLane;
     private int minLane;
     private int maxLane;
-    private Vector3 movement;
+    public float minSpeed;
+    public float restingSpeed;
+    public float maxSpeed;
+    private float desiredSpeed;
 
     void Start()
     {
@@ -21,14 +21,13 @@ public class Player : MonoBehaviour {
 
     void Update()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+        //CHANGE LANES
 
-        if (moveVertical >= .5 || Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             changeLane(1);
         }
-        else if (moveVertical <= -.5 || Input.GetKeyDown(KeyCode.DownArrow))
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             changeLane(-1);
         }
@@ -37,12 +36,24 @@ public class Player : MonoBehaviour {
             //stay in same lane
         }
 
-        movement = new Vector3(moveHorizontal, 0.0f, 0.0f);
+
+        // SET SPEED
+
+        desiredSpeed = restingSpeed;
+
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            desiredSpeed = maxSpeed;
+        }
+        else if(Input.GetKey(KeyCode.LeftArrow))
+        {
+            desiredSpeed = minSpeed;
+        }
     }
 
     void FixedUpdate()
     {
-        rb.AddForce(movement * speed);
+        rb.AddForce(new Vector3(desiredSpeed, 0.0f, 0.0f));
     }
 
     void OnTriggerEnter (Collider other)
