@@ -296,3 +296,5 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+*.dll
+Fore Score and Seven Beers Ago/Builds/firstsprint_Data/Mono/etc/mono/1.0/DefaultWsdlHelpGenerator.aspx
