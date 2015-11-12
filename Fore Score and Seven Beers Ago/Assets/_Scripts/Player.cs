@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class Player : MonoBehaviour {
-    private Rigidbody rb;
+    public GameObject SP_Camera;
+
     private int currentLane;
     private int minLane;
     private int maxLane;
@@ -13,7 +14,6 @@ public class Player : MonoBehaviour {
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
         currentLane = 0;
         minLane = 0;
         maxLane = 5;
@@ -41,11 +41,11 @@ public class Player : MonoBehaviour {
 
         desiredSpeed = restingSpeed;
 
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow) && transform.position.x < SP_Camera.transform.position.x + 4f)
         {
             desiredSpeed = maxSpeed;
         }
-        else if(Input.GetKey(KeyCode.LeftArrow))
+        else if(Input.GetKey(KeyCode.LeftArrow) && transform.position.x > SP_Camera.transform.position.x - (4f + transform.lossyScale.x))
         {
             desiredSpeed = minSpeed;
         }
@@ -53,7 +53,7 @@ public class Player : MonoBehaviour {
 
     void FixedUpdate()
     {
-        rb.AddForce(new Vector3(desiredSpeed, 0.0f, 0.0f));
+        transform.position = new Vector3(transform.position.x + desiredSpeed, transform.position.y, transform.position.z);
     }
 
     void OnTriggerEnter (Collider other)

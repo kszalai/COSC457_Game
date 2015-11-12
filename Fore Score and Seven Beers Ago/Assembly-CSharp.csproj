@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\_Scripts\Alligator.cs" />
+     <Compile Include="Assets\_Scripts\CameraMovement.cs" />
      <Compile Include="Assets\_Scripts\CokeCan.cs" />
      <Compile Include="Assets\_Scripts\CokeMachine.cs" />
      <Compile Include="Assets\_Scripts\Gopher.cs" />
