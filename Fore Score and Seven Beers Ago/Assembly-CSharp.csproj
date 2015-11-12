@@ -50,6 +50,7 @@
      <Compile Include="Assets\_Scripts\CokeMachine.cs" />
      <Compile Include="Assets\_Scripts\Gopher.cs" />
      <Compile Include="Assets\_Scripts\MainMenuScript.cs" />
+     <Compile Include="Assets\_Scripts\Player.cs" />
      <Compile Include="Assets\_Scripts\Pond.cs" />
      <Compile Include="Assets\_Scripts\SandTrap.cs" />
      <Compile Include="Assets\_Scripts\Tees.cs" />
