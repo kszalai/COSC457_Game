@@ -54,17 +54,11 @@
      <Compile Include="Assets\_Scripts\Pond.cs" />
      <Compile Include="Assets\_Scripts\SandTrap.cs" />
      <Compile Include="Assets\_Scripts\Tees.cs" />
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>V:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
- </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>V:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>V:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Analytics">
- <HintPath>V:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Cecil">
  <HintPath>V:/Program Files/Unity/Editor/Data/Managed/Mono.Cecil.dll</HintPath>
