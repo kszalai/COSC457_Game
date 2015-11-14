@@ -19,9 +19,9 @@ public class Gopher : MonoBehaviour {
     void PopUpGopher () {
         Vector3 pos = transform.position;
         if(!AboveGround)
-            pos.y = 0.25f;
+            pos.y = -0.1f;
         else
-            pos.y = -0.5f;
+            pos.y = -1.0f;
         AboveGround = !AboveGround;
         transform.position = pos;
     }
