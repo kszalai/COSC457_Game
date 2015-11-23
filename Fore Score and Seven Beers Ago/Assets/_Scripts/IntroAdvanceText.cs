@@ -24,15 +24,22 @@ public class IntroAdvanceText : MonoBehaviour {
 		paragraph4.enabled = false;
 		paragraph1.enabled = true;
 
-		//Allow 10 seconds to pass, then disable the current paragraph
+		//Allow 15 seconds to pass, then disable the 1st paragraph and enable the 2nd
 		//yield return new WaitForSeconds(10);
 		//paragraph1.enabled = false;
+
+		//Allow 31 seconds to pass, then disable the 2nd paragraph and enable the 3rd
+
+		//Allow 20 seconds to pass, then disable the 3rd paragraph and enable the 4th
+
+		//Allow 10 seconds to pass, then enable the button
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
+		//If button is clicked, then go to the next scene
 
 	}
 }
