@@ -51,6 +51,7 @@
      <Compile Include="Assets\_Scripts\CokeMachine.cs" />
      <Compile Include="Assets\_Scripts\Gopher.cs" />
      <Compile Include="Assets\_Scripts\IntroAdvanceText.cs" />
+     <Compile Include="Assets\_Scripts\IntroGoToLevel1.cs" />
      <Compile Include="Assets\_Scripts\MainMenuScript.cs" />
      <Compile Include="Assets\_Scripts\Player.cs" />
      <Compile Include="Assets\_Scripts\Pond.cs" />
