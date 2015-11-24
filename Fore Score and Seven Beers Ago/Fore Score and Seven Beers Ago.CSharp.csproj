@@ -51,17 +51,11 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Analytics">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
@@ -79,8 +73,10 @@
     <Compile Include="Assets\_Scripts\CokeCan.cs" />
     <Compile Include="Assets\_Scripts\CokeMachine.cs" />
     <Compile Include="Assets\_Scripts\Gopher.cs" />
+    <Compile Include="Assets\_Scripts\HealthBar.cs" />
     <Compile Include="Assets\_Scripts\MainMenuScript.cs" />
-    <Compile Include="Assets\_Scripts\Player.cs" />
+    <Compile Include="Assets\_Scripts\Player\Player.cs" />
+    <Compile Include="Assets\_Scripts\Player\PlayerHealth.cs" />
     <Compile Include="Assets\_Scripts\Pond.cs" />
     <Compile Include="Assets\_Scripts\SandTrap.cs" />
     <Compile Include="Assets\_Scripts\Tees.cs" />
