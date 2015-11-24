@@ -8,6 +8,8 @@ public class IntroAdvanceText : MonoBehaviour {
 	private Text paragraph2;
 	private Text paragraph3;
 	private Text paragraph4;
+	private Text paragraph5;
+	private Button playGame;
 
 
 	// Use this for initialization
@@ -20,7 +22,9 @@ public class IntroAdvanceText : MonoBehaviour {
 		paragraph1 = GameObject.FindWithTag("Paragraph1YouAreAbe").GetComponent<Text>() as Text;
 		paragraph2 = GameObject.FindWithTag("Paragraph2FreakAccident").GetComponent<Text>() as Text;
 		paragraph3 = GameObject.FindWithTag("Paragraph3BarCloses").GetComponent<Text>() as Text;
-		paragraph4 = GameObject.FindWithTag("Paragraph4CaddyCannotLeave").GetComponent<Text>() as Text;
+		paragraph4 = GameObject.FindWithTag("Paragraph4CaddyShows").GetComponent<Text>() as Text;
+		paragraph5 = GameObject.FindWithTag("Paragraph5CaddyCannotLeave").GetComponent<Text>() as Text;
+		playGame = GameObject.FindWithTag ("PlayGameButton").GetComponent<Button> () as Button;
 
 		//paragraph1 = GetComponent<Text> ();
 		//paragraph2 = GetComponent<Text> ();
@@ -31,9 +35,11 @@ public class IntroAdvanceText : MonoBehaviour {
 		paragraph2.enabled = false;
 		paragraph3.enabled = false;
 		paragraph4.enabled = false;
+		paragraph5.enabled = false;
 		paragraph1.enabled = true;
+		playGame.enabled = true;
 
-		StartCoroutine(castFire ());
+		StartCoroutine(advanceText ());
 
 		//Allow 15 seconds to pass, then disable the 1st paragraph and enable the 2nd
 		//yield WaitForSeconds (10);
@@ -47,25 +53,30 @@ public class IntroAdvanceText : MonoBehaviour {
 
 	}
 
-	IEnumerator castFire() // Not void
+	IEnumerator advanceText() // Not void
 	{
-		//Allow 15 seconds to pass, then disable the 1st paragraph and enable the 2nd
-		yield return new WaitForSeconds (15);
+		//First paragraph is already showing (1st song plays for 15 seconds)
+		//Allow 15 seconds to pass (1st song finishes)
+		yield return new WaitForSeconds (17);
+
+		//2nd song starts playing (31 seconds). Disable 1st paragraph, enable 2nd
 		paragraph1.enabled = false;
 		paragraph2.enabled = true;
 
-		//Allow 31 seconds to pass, then disable the 2nd paragraph and enable the 3rd
-		yield return new WaitForSeconds (31);
+		//Allow 2/3 of the song to pass (20 seconds). Disable 2nd paragraph, enable 3rd
+		yield return new WaitForSeconds (20);
 		paragraph2.enabled = false;
 		paragraph3.enabled = true;
-		
-		//Allow 20 seconds to pass, then disable the 3rd paragraph and enable the 4th
-		yield return new WaitForSeconds (10);
+
+		//Allow the last 11 seconds of 2nd song to pass, then disable the 3rd paragraph and enable the 4th
+		yield return new WaitForSeconds (9);
 		paragraph3.enabled = false;
 		paragraph4.enabled = true;
-
-		//Allow 10 seconds to pass, then enable the button
-
+		
+		//Allow 20 seconds to pass, then disable the 3rd paragraph and enable the 4th
+		yield return new WaitForSeconds (22);
+		paragraph4.enabled = false;
+		paragraph5.enabled = true;
 
 	}
 
