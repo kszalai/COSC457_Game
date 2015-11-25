@@ -50,22 +50,18 @@
      <Compile Include="Assets\_Scripts\CokeCan.cs" />
      <Compile Include="Assets\_Scripts\CokeMachine.cs" />
      <Compile Include="Assets\_Scripts\Gopher.cs" />
+     <Compile Include="Assets\_Scripts\IntroAdvanceText.cs" />
+     <Compile Include="Assets\_Scripts\IntroGoToLevel1.cs" />
      <Compile Include="Assets\_Scripts\MainMenuScript.cs" />
      <Compile Include="Assets\_Scripts\Player.cs" />
      <Compile Include="Assets\_Scripts\Pond.cs" />
      <Compile Include="Assets\_Scripts\SandTrap.cs" />
      <Compile Include="Assets\_Scripts\Tees.cs" />
- <Reference Include="UnityEngine.Analytics">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
- </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
