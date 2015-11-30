@@ -5,6 +5,7 @@ using System.Collections;
 public class MainMenuScript : MonoBehaviour {
 
 	public Button playButton;
+	public Button settingsButton;
 	public Button exitButton;
 
     //index value of first Single Player Level
@@ -17,6 +18,7 @@ public class MainMenuScript : MonoBehaviour {
 	void Start () {
 
 		playButton = playButton.GetComponent<Button> ();
+		settingsButton = settingsButton.GetComponent<Button> ();
 		exitButton = exitButton.GetComponent<Button> ();
 	
 	}
@@ -35,6 +37,12 @@ public class MainMenuScript : MonoBehaviour {
 	public void ExitGame() {
 
 		Application.Quit ();
+
+	}
+
+	public void OpenSettings() {
+
+		Application.LoadLevel ("SettingsMenu");
 
 	}
 }
