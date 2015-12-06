@@ -28,7 +28,7 @@ public class CokeMachine : MonoBehaviour {
             direction = new Vector3(0.0f, 0.0f, 1.0f);
         else
             direction = new Vector3(0.0f, 0.0f, -1.0f);
-        can.transform.position = transform.position;
+        can.transform.position = new Vector3(transform.position.x-0.025f,transform.position.y-0.25f,transform.position.z);
         can.GetComponent<Rigidbody>().velocity = direction * velocityMult;
 	}
 }
