@@ -62,60 +62,52 @@ public class Player : MonoBehaviour {
         switch(tag)
         {
             case "Alligator":
-			{
                 print("Hit by Alligator");
 				changeLane(1);
                 break;
-			}
             case "CokeCan":
-			{
                 print("Hit by CokeCan");
 				Destroy(other.gameObject);
                 break;
-			}
             case "CokeMachine":
-			{
                 print("Hit by CokeMachine");
 				changeLane(1);
                 break;
-			}
             case "Gopher":
-			{
                 print("Hit by Gopher");
 				changeLane(1);
                 break;
-			}
             case "Pond":
-			{
                 print("Hit by Pond");
 				desiredSpeed = minSpeed;
                 break;
-			}
             case "SandTrap":
-			{
                 print("Hit by SandTrap");
 				desiredSpeed = minSpeed;
                 break;
-			}
             case "Tees":
-			{
                 print("Hit by Tees");
                 break;
-			}
+			default:
+				print ("Hit by CokeCan");
+				break;
         }
     }
 
     private void changeLane(int direction)
     {
-        if(direction == 1 && currentLane < maxLane)
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1);
-            currentLane++;
-        }
-        else if(direction == -1 && currentLane > minLane)
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
-            currentLane--;
-        }
+        if (direction == 1 && currentLane < maxLane) {
+			transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z + 1);
+			currentLane++;
+		} else if (direction == -1 && currentLane > minLane) {
+			transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z - 1);
+			currentLane--;
+		} else if (direction == 1 && currentLane == maxLane) {
+			transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z - 1);
+			currentLane--;
+		} else if (direction == - 1 && currentLane == minLane) {
+			transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z + 1);
+			currentLane++;
+		}
     }
 }
