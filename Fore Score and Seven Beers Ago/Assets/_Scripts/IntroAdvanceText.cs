@@ -9,27 +9,34 @@ public class IntroAdvanceText : MonoBehaviour {
 	private Text paragraph3;
 	private Text paragraph4;
 	private Text paragraph5;
+	private Button goToParagraph2Button;
+	private Button goToParagraph3Button;
+	private Button goToParagraph4Button;
+	private Button goToParagraph5Button;
 	private Button playGame;
+	private AudioSource first, second, third, fourth, fifth;
 
 
 	// Use this for initialization
-	void Start () {
-	
-		//paragraph1 = GameObject.FindGameObjectWithTag ("Paragraph1YouAreAbe");
-		//Transform textTr = paragraph1.transform.Find ("paragraph1");
-		//Text text = textTr .GetComponent<Text>();
+	public void Start () {
 
+		//Link all the components on the screen with the variables listed above
 		paragraph1 = GameObject.FindWithTag("Paragraph1YouAreAbe").GetComponent<Text>() as Text;
 		paragraph2 = GameObject.FindWithTag("Paragraph2FreakAccident").GetComponent<Text>() as Text;
 		paragraph3 = GameObject.FindWithTag("Paragraph3BarCloses").GetComponent<Text>() as Text;
 		paragraph4 = GameObject.FindWithTag("Paragraph4CaddyShows").GetComponent<Text>() as Text;
 		paragraph5 = GameObject.FindWithTag("Paragraph5CaddyCannotLeave").GetComponent<Text>() as Text;
+		goToParagraph2Button = GameObject.FindWithTag ("goToParagraph2").GetComponent<Button> () as Button;
+		goToParagraph3Button = GameObject.FindWithTag ("goToParagraph3").GetComponent<Button> () as Button;
+		goToParagraph4Button = GameObject.FindWithTag ("goToParagraph4").GetComponent<Button> () as Button;
+		goToParagraph5Button = GameObject.FindWithTag ("goToParagraph5").GetComponent<Button> () as Button;
 		playGame = GameObject.FindWithTag ("PlayGameButton").GetComponent<Button> () as Button;
+		first = GameObject.FindWithTag ("introMusic1").GetComponent<AudioSource> () as AudioSource;
+		second = GameObject.FindWithTag ("introMusic2").GetComponent<AudioSource> () as AudioSource;
+		third = GameObject.FindWithTag ("introMusic3").GetComponent<AudioSource> () as AudioSource;
+		fourth = GameObject.FindWithTag ("introMusic4").GetComponent<AudioSource> () as AudioSource;
+		fifth = GameObject.FindWithTag ("introMusic5").GetComponent<AudioSource> () as AudioSource;
 
-		//paragraph1 = GetComponent<Text> ();
-		//paragraph2 = GetComponent<Text> ();
-		//paragraph3 = GetComponent<Text> ();
-		//paragraph4 = GetComponent<Text> ();
 
 		//Set first paragraph to be visible, others to be invisible
 		paragraph2.enabled = false;
@@ -37,24 +44,34 @@ public class IntroAdvanceText : MonoBehaviour {
 		paragraph4.enabled = false;
 		paragraph5.enabled = false;
 		paragraph1.enabled = true;
+		//Set first "Next" button to be visisble, others to be invisible
+		goToParagraph3Button.enabled = false;
+		goToParagraph4Button.enabled = false;
+		goToParagraph5Button.enabled = false;
+		goToParagraph2Button.enabled = true;
+		//Set "Play Game" button to be visible
 		playGame.enabled = true;
 
-		StartCoroutine(advanceText ());
 
-		//Allow 15 seconds to pass, then disable the 1st paragraph and enable the 2nd
-		//yield WaitForSeconds (10);
-		//if (Time.time >= 5) {
-		//	paragraph1.enabled = false;
-		//	paragraph2.enabled = true;
-		//}
-
-
-
+		//Start advancing through the text automatically
+		//StartCoroutine(advanceText ());
 
 	}
 
-	IEnumerator advanceText() // Not void
+	public IEnumerator advanceText() // Not void, IEnumerator necessary to WaitForSeconds
 	{
+		yield return new WaitForSeconds (17);
+		goToParagraph2 ();
+		yield return new WaitForSeconds (20);
+		goToParagraph3 ();
+		yield return new WaitForSeconds (9);
+		goToParagraph4 ();
+		yield return new WaitForSeconds (22);
+		goToParagraph5 ();
+
+
+		/*Original Code to Control Advancement of Text
+
 		//First paragraph is already showing (1st song plays for 15 seconds)
 		//Allow 15 seconds to pass (1st song finishes)
 		yield return new WaitForSeconds (17);
@@ -78,10 +95,61 @@ public class IntroAdvanceText : MonoBehaviour {
 		paragraph4.enabled = false;
 		paragraph5.enabled = true;
 
+		*/
+
+	}
+
+	//Hide all paragraphs/next buttons and start fresh
+	public void hideAllParagraphsAndNextButtons() {
+		paragraph2.enabled = false;
+		paragraph3.enabled = false;
+		paragraph4.enabled = false;
+		paragraph5.enabled = false;
+		paragraph1.enabled = false;
+		goToParagraph2Button.enabled = false;
+		goToParagraph3Button.enabled = false;
+		goToParagraph4Button.enabled = false;
+		goToParagraph5Button.enabled = false;
+	}
+
+	public void goToParagraph2() {
+		hideAllParagraphsAndNextButtons ();
+		paragraph2.enabled = true;
+		second.Play ();
+		goToParagraph3Button.enabled = true;
+
+		//yield return new WaitForSeconds (20);
+		//goToParagraph3 ();
+	}
+
+	public void goToParagraph3() {
+		hideAllParagraphsAndNextButtons ();
+		paragraph3.enabled = true;
+		third.Play ();
+		goToParagraph4Button.enabled = true;
+
+		//yield return new WaitForSeconds (9);
+		//goToParagraph4 ();
+	}
+
+	public void goToParagraph4() {
+		hideAllParagraphsAndNextButtons ();
+		paragraph4.enabled = true;
+		fourth.Play ();
+		goToParagraph5Button.enabled = true;
+
+		//yield return new WaitForSeconds (22);
+		//goToParagraph5 ();
+	}
+
+	public void goToParagraph5() {
+		hideAllParagraphsAndNextButtons ();
+		fifth.Play ();
+		paragraph5.enabled = true;
 	}
 
 	// Update is called once per frame
-	void Update () {
+	public void Update () {
 	
 		//If button is clicked, then go to the next scene
 
