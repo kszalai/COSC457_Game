@@ -6,16 +6,24 @@ using System;
 public class Player : MonoBehaviour {
     public GameObject SP_Camera;
 
+    //TODO: This should be changed to be more dynamic in the future
+    public int numberOfMenus;
+    public int numberOfLevels;
+    private int numberOfScenes;
+
     private int currentLane;
     private int minLane;
     private int maxLane;
+
     public float minSpeed;
     public float restingSpeed;
     public float maxSpeed;
     private float desiredSpeed;
-	public Text successText;
-	private AudioSource medalMusic;
-	private AudioSource driveMusic;
+    
+	private AudioSource Music;
+    public AudioClip MedalMusic;
+
+    private Text SuccessText;
 
     PlayerHealth PlayerHealth;
 
@@ -26,14 +34,16 @@ public class Player : MonoBehaviour {
 
     void Start()
     {
-		successText = GameObject.FindWithTag("SuccessText").GetComponent<Text>() as Text;
-		medalMusic = GameObject.FindWithTag ("MedalCeremonyAudio").GetComponent<AudioSource> () as AudioSource;
-		driveMusic = GameObject.FindWithTag ("DriveMusic").GetComponent<AudioSource> () as AudioSource;
+        numberOfScenes = numberOfMenus + numberOfLevels;
 
-		successText.enabled = false;
-		currentLane = 0;
+        currentLane = 0;
         minLane = 0;
         maxLane = 5;
+
+        Music = GameObject.FindWithTag("Music").GetComponent<AudioSource>();
+        SuccessText = GameObject.FindWithTag("SuccessText").GetComponent<Text>();
+
+        SuccessText.enabled = false;
     }
 
     void Update()
@@ -82,81 +92,59 @@ public class Player : MonoBehaviour {
             {
                 case "Alligator":
                 {
-                    print("Hit by Alligator");
+                    //print("Hit by Alligator");
                     PlayerHealth.TakeDamage(25);
                     changeLane(1);
                     break;
                 }
                 case "CokeCan":
                 {
-                    print("Hit by CokeCan");
+                    //print("Hit by CokeCan");
                     Destroy(other.gameObject);
                     PlayerHealth.TakeDamage(10);
                     break;
                 }
                 case "CokeMachine":
                 {
-                    print("Hit by CokeMachine");
+                    //print("Hit by CokeMachine");
                     changeLane(1);
                     PlayerHealth.TakeDamage(5);
                     break;
                 }
                 case "Gopher":
                 {
-                    print("Hit by Gopher");
+                    //print("Hit by Gopher");
                     changeLane(1);
                     PlayerHealth.TakeDamage(25);
                     break;
                 }
                 case "Pond":
                 {
-                    print("Hit by Pond");
+                    //print("Hit by Pond");
                     desiredSpeed = minSpeed;
                     break;
                 }
                 case "SandTrap":
                 {
-                    print("Hit by SandTrap");
+                    //print("Hit by SandTrap");
                     desiredSpeed = minSpeed;
                     break;
                 }
                 case "Tees":
                 {
-                    print("Hit by Tees");
+                    //print("Hit by Tees");
                     PlayerHealth.TakeDamage(50);
                     break;
                 }
                 case "EndLine":
                 {
-                    successText.enabled = true;
-
-                    if (Application.loadedLevel == 5)
-                    {
-                        driveMusic.Stop();
-                        medalMusic.Play();
-                    }
-
-                    break;
-                }
-                case "NextLevelTransitionLine":
-                {
-                    successText.enabled = false;
-
-                    if (Application.loadedLevel == 5)
-                    {
-                        Application.LoadLevel(0);
-                    }
-                    else
-                    {
-                        Application.LoadLevel(Application.loadedLevel + 1);
-                    }
-
+                    //print("END LINE, BABY");
+                    StartCoroutine(endLevel());
                     break;
                 }
             }
         }
     }
-	
 
     private void changeLane(int direction)
     {
@@ -169,6 +157,26 @@ public class Player : MonoBehaviour {
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
             currentLane--;
+        }
+    }
+
+    private IEnumerator endLevel()
+    {
+        SuccessText.enabled = true;
+        Music.clip = MedalMusic;
+        Music.Play();
+
+        yield return new WaitForSeconds(10);
+
+        SuccessText.enabled = false;
+
+        if (Application.loadedLevel == numberOfScenes)
+        {
+            Application.LoadLevel(0);
+        }
+        else
+        {
+            Application.LoadLevel(Application.loadedLevel + 1);
         }
     }
 }

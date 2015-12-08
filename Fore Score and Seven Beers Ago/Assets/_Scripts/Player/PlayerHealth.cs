@@ -31,7 +31,7 @@ public class PlayerHealth : MonoBehaviour {
         if (Damaged && !IsDead)
         {
             DamageFlashCount = 0;
-            InvokeRepeating("FlashingDamage", 0f, 1f);
+            InvokeRepeating("FlashingDamage", 0f, .1f);
         }
 	}
 
@@ -44,7 +44,9 @@ public class PlayerHealth : MonoBehaviour {
             GolfCartModel.SetActive(false);
         }
         else
+        {
             GolfCartModel.SetActive(true);
+        }
 
         if (DamageFlashCount == 6)
         {
