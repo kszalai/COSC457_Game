@@ -48,7 +48,7 @@ public class PlayerHealth : MonoBehaviour {
             GolfCartModel.SetActive(true);
         }
 
-        if (DamageFlashCount == 6)
+        if (DamageFlashCount == 10)
         {
             CancelInvoke("FlashingDamage");
             Damaged = false;

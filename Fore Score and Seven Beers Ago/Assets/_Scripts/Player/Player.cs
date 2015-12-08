@@ -139,6 +139,7 @@ public class Player : MonoBehaviour {
                 case "EndLine":
                 {
                     //print("END LINE, BABY");
+                    gameObject.GetComponent<BoxCollider>().enabled = false;
                     StartCoroutine(endLevel());
                     break;
                 }
@@ -165,6 +166,7 @@ public class Player : MonoBehaviour {
         SuccessText.enabled = true;
         Music.clip = MedalMusic;
         Music.Play();
+        
 
         yield return new WaitForSeconds(10);
 
