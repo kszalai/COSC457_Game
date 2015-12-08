@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using System;
 
 public class Player : MonoBehaviour {
     public GameObject SP_Camera;
@@ -11,6 +13,9 @@ public class Player : MonoBehaviour {
     public float restingSpeed;
     public float maxSpeed;
     private float desiredSpeed;
+	public Text successText;
+	private AudioSource medalMusic;
+	private AudioSource driveMusic;
 
     PlayerHealth PlayerHealth;
 
@@ -21,7 +26,12 @@ public class Player : MonoBehaviour {
 
     void Start()
     {
-        currentLane = 0;
+		successText = GameObject.FindWithTag("SuccessText").GetComponent<Text>() as Text;
+		medalMusic = GameObject.FindWithTag ("MedalCeremonyAudio").GetComponent<AudioSource> () as AudioSource;
+		driveMusic = GameObject.FindWithTag ("DriveMusic").GetComponent<AudioSource> () as AudioSource;
+
+		successText.enabled = false;
+		currentLane = 0;
         minLane = 0;
         maxLane = 5;
     }
@@ -68,6 +78,7 @@ public class Player : MonoBehaviour {
         string tag = other.gameObject.tag;
         if (PlayerHealth.Damaged != true)
         {
+<<<<<<< HEAD
             switch (tag)
             {
                 case "Alligator":
@@ -117,8 +128,78 @@ public class Player : MonoBehaviour {
                         break;
                     }
             }
+=======
+            case "Alligator":
+			{
+                print("Hit by Alligator");
+				changeLane(1);
+                break;
+			}
+            case "CokeCan":
+			{
+                print("Hit by CokeCan");
+				Destroy(other.gameObject);
+                break;
+			}
+            case "CokeMachine":
+			{
+                print("Hit by CokeMachine");
+				changeLane(1);
+                break;
+			}
+            case "Gopher":
+			{
+                print("Hit by Gopher");
+				changeLane(1);
+                break;
+			}
+            case "Pond":
+			{
+                print("Hit by Pond");
+				desiredSpeed = minSpeed;
+                break;
+			}
+            case "SandTrap":
+			{
+                print("Hit by SandTrap");
+				desiredSpeed = minSpeed;
+                break;
+			}
+            case "Tees":
+			{
+                print("Hit by Tees");
+                break;
+			}
+			case "EndLine": 
+			{
+				successText.enabled = true;
+				
+			if (Application.loadedLevel == 5) {
+				driveMusic.Stop();
+				medalMusic.Play ();
+			}
+
+				break;
+			}
+			case "NextLevelTransitionLine": {
+				
+				successText.enabled = false;
+
+				if (Application.loadedLevel == 2) {
+					Application.LoadLevel(3);
+				} else if (Application.loadedLevel == 3) {
+					Application.LoadLevel(4);
+				} else if (Application.loadedLevel == 4) {
+					Application.LoadLevel(5);
+				} else if (Application.loadedLevel == 5) {
+					Application.LoadLevel(0);
+				}
+				break;
+			}
+>>>>>>> refs/remotes/origin/brianna-branch
         }
     }
+	
 
     private void changeLane(int direction)
     {
