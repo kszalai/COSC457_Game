@@ -102,6 +102,19 @@ public class Player : MonoBehaviour {
                 print("Hit by Tees");
                 break;
 			}
+			case "EndLine": 
+			{
+				if (Application.loadedLevel == 2) {
+					Application.LoadLevel(3);
+				} else if (Application.loadedLevel == 3) {
+					Application.LoadLevel(4);
+				} else if (Application.loadedLevel == 4) {
+					Application.LoadLevel(5);
+				} else if (Application.loadedLevel == 5) {
+					Application.LoadLevel(0);
+				}
+				break;
+			}
         }
     }
 
