@@ -78,125 +78,82 @@ public class Player : MonoBehaviour {
         string tag = other.gameObject.tag;
         if (PlayerHealth.Damaged != true)
         {
-<<<<<<< HEAD
             switch (tag)
             {
                 case "Alligator":
-                    {
-                        print("Hit by Alligator");
-                        PlayerHealth.TakeDamage(25);
-                        changeLane(1);
-                        break;
-                    }
+                {
+                    print("Hit by Alligator");
+                    PlayerHealth.TakeDamage(25);
+                    changeLane(1);
+                    break;
+                }
                 case "CokeCan":
-                    {
-                        print("Hit by CokeCan");
-                        Destroy(other.gameObject);
-                        PlayerHealth.TakeDamage(10);
-                        break;
-                    }
+                {
+                    print("Hit by CokeCan");
+                    Destroy(other.gameObject);
+                    PlayerHealth.TakeDamage(10);
+                    break;
+                }
                 case "CokeMachine":
-                    {
-                        print("Hit by CokeMachine");
-                        changeLane(1);
-                        PlayerHealth.TakeDamage(5);
-                        break;
-                    }
+                {
+                    print("Hit by CokeMachine");
+                    changeLane(1);
+                    PlayerHealth.TakeDamage(5);
+                    break;
+                }
                 case "Gopher":
-                    {
-                        print("Hit by Gopher");
-                        changeLane(1);
-                        PlayerHealth.TakeDamage(25);
-                        break;
-                    }
+                {
+                    print("Hit by Gopher");
+                    changeLane(1);
+                    PlayerHealth.TakeDamage(25);
+                    break;
+                }
                 case "Pond":
-                    {
-                        print("Hit by Pond");
-                        desiredSpeed = minSpeed;
-                        break;
-                    }
+                {
+                    print("Hit by Pond");
+                    desiredSpeed = minSpeed;
+                    break;
+                }
                 case "SandTrap":
-                    {
-                        print("Hit by SandTrap");
-                        desiredSpeed = minSpeed;
-                        break;
-                    }
+                {
+                    print("Hit by SandTrap");
+                    desiredSpeed = minSpeed;
+                    break;
+                }
                 case "Tees":
+                {
+                    print("Hit by Tees");
+                    PlayerHealth.TakeDamage(50);
+                    break;
+                }
+                case "EndLine":
+                {
+                    successText.enabled = true;
+
+                    if (Application.loadedLevel == 5)
                     {
-                        print("Hit by Tees");
-                        PlayerHealth.TakeDamage(50);
-                        break;
+                        driveMusic.Stop();
+                        medalMusic.Play();
                     }
+
+                    break;
+                }
+                case "NextLevelTransitionLine":
+                {
+                    successText.enabled = false;
+
+                    if (Application.loadedLevel == 5)
+                    {
+                        Application.LoadLevel(0);
+                    }
+                    else
+                    {
+                        Application.LoadLevel(Application.loadedLevel + 1);
+                    }
+
+                    break;
+                }
             }
-=======
-            case "Alligator":
-			{
-                print("Hit by Alligator");
-				changeLane(1);
-                break;
-			}
-            case "CokeCan":
-			{
-                print("Hit by CokeCan");
-				Destroy(other.gameObject);
-                break;
-			}
-            case "CokeMachine":
-			{
-                print("Hit by CokeMachine");
-				changeLane(1);
-                break;
-			}
-            case "Gopher":
-			{
-                print("Hit by Gopher");
-				changeLane(1);
-                break;
-			}
-            case "Pond":
-			{
-                print("Hit by Pond");
-				desiredSpeed = minSpeed;
-                break;
-			}
-            case "SandTrap":
-			{
-                print("Hit by SandTrap");
-				desiredSpeed = minSpeed;
-                break;
-			}
-            case "Tees":
-			{
-                print("Hit by Tees");
-                break;
-			}
-			case "EndLine": 
-			{
-				successText.enabled = true;
-				
-			if (Application.loadedLevel == 5) {
-				driveMusic.Stop();
-				medalMusic.Play ();
-			}
-
-				break;
-			}
-			case "NextLevelTransitionLine": {
-				
-				successText.enabled = false;
-
-				if (Application.loadedLevel == 2) {
-					Application.LoadLevel(3);
-				} else if (Application.loadedLevel == 3) {
-					Application.LoadLevel(4);
-				} else if (Application.loadedLevel == 4) {
-					Application.LoadLevel(5);
-				} else if (Application.loadedLevel == 5) {
-					Application.LoadLevel(0);
-				}
-				break;
-			}
->>>>>>> refs/remotes/origin/brianna-branch
         }
     }
 	
