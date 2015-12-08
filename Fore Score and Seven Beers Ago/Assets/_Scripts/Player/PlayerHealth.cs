@@ -10,27 +10,29 @@ public class PlayerHealth : MonoBehaviour {
     public int CurrentHealth;
     public Slider HealthSlider;
     public CameraMovement GameCamera;
-    //Reference to Game Time here
 
     private float OldCameraSpeed;
+    private Vector3 DefaultPlayerStart;
+    private Vector3 DefaultCameraStart;
     private bool IsDead;
-    private bool Damaged;
+    public bool Damaged;
     private int DamageFlashCount = 0;
 
     void Awake()
     {
         CurrentHealth = StartingHealth;
+        DefaultCameraStart = GameCamera.transform.position;
+        DefaultPlayerStart = transform.position;
     }
 	
-	void Update ()
+	void FixedUpdate()
     {
         //If we are damaged, blink the player
-        if (Damaged)
+        if (Damaged && !IsDead)
         {
             DamageFlashCount = 0;
-            InvokeRepeating("FlashingDamage", 0f, 0.5f);
+            InvokeRepeating("FlashingDamage", 0f, 1f);
         }
-        Damaged = false;
 	}
 
     void FlashingDamage()
@@ -44,8 +46,11 @@ public class PlayerHealth : MonoBehaviour {
         else
             GolfCartModel.SetActive(true);
 
-        if (DamageFlashCount == 3)
+        if (DamageFlashCount == 6)
+        {
             CancelInvoke("FlashingDamage");
+            Damaged = false;
+        }
     }
 
     //Other scripts and components call this function
@@ -86,13 +91,11 @@ public class PlayerHealth : MonoBehaviour {
 
     void Respawn()
     {
-        //Respawn behind where we died
-        GolfCartModel.transform.position = new Vector3(GolfCartModel.transform.position.x - 10,
-            GolfCartModel.transform.position.y, GolfCartModel.transform.position.z);
+        //Respawn at beginning of level where we died
+        transform.position = DefaultPlayerStart;
 
         //Move GameCamera back to where player is
-        GameCamera.transform.position = new Vector3(GameCamera.transform.position.x - 10,
-            GameCamera.transform.position.y, GameCamera.transform.position.z);
+        GameCamera.transform.position = DefaultCameraStart;
 
         //Turn back on our player
         GolfCartModel.SetActive(true);

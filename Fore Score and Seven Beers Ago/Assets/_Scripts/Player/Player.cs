@@ -12,6 +12,13 @@ public class Player : MonoBehaviour {
     public float maxSpeed;
     private float desiredSpeed;
 
+    PlayerHealth PlayerHealth;
+
+    void Awake()
+    {
+        PlayerHealth = GetComponent<PlayerHealth>();
+    }
+
     void Start()
     {
         currentLane = 0;
@@ -59,49 +66,57 @@ public class Player : MonoBehaviour {
     void OnTriggerEnter (Collider other)
     {
         string tag = other.gameObject.tag;
-        switch(tag)
+        if (PlayerHealth.Damaged != true)
         {
-            case "Alligator":
-			{
-                print("Hit by Alligator");
-				changeLane(1);
-                break;
-			}
-            case "CokeCan":
-			{
-                print("Hit by CokeCan");
-				Destroy(other.gameObject);
-                break;
-			}
-            case "CokeMachine":
-			{
-                print("Hit by CokeMachine");
-				changeLane(1);
-                break;
-			}
-            case "Gopher":
-			{
-                print("Hit by Gopher");
-				changeLane(1);
-                break;
-			}
-            case "Pond":
-			{
-                print("Hit by Pond");
-				desiredSpeed = minSpeed;
-                break;
-			}
-            case "SandTrap":
-			{
-                print("Hit by SandTrap");
-				desiredSpeed = minSpeed;
-                break;
-			}
-            case "Tees":
-			{
-                print("Hit by Tees");
-                break;
-			}
+            switch (tag)
+            {
+                case "Alligator":
+                    {
+                        print("Hit by Alligator");
+                        PlayerHealth.TakeDamage(25);
+                        changeLane(1);
+                        break;
+                    }
+                case "CokeCan":
+                    {
+                        print("Hit by CokeCan");
+                        Destroy(other.gameObject);
+                        PlayerHealth.TakeDamage(10);
+                        break;
+                    }
+                case "CokeMachine":
+                    {
+                        print("Hit by CokeMachine");
+                        changeLane(1);
+                        PlayerHealth.TakeDamage(5);
+                        break;
+                    }
+                case "Gopher":
+                    {
+                        print("Hit by Gopher");
+                        changeLane(1);
+                        PlayerHealth.TakeDamage(25);
+                        break;
+                    }
+                case "Pond":
+                    {
+                        print("Hit by Pond");
+                        desiredSpeed = minSpeed;
+                        break;
+                    }
+                case "SandTrap":
+                    {
+                        print("Hit by SandTrap");
+                        desiredSpeed = minSpeed;
+                        break;
+                    }
+                case "Tees":
+                    {
+                        print("Hit by Tees");
+                        PlayerHealth.TakeDamage(50);
+                        break;
+                    }
+            }
         }
     }
 
