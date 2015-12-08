@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using System;
 
 public class Player : MonoBehaviour {
     public GameObject SP_Camera;
@@ -11,10 +13,18 @@ public class Player : MonoBehaviour {
     public float restingSpeed;
     public float maxSpeed;
     private float desiredSpeed;
+	public Text successText;
+	private AudioSource medalMusic;
+	private AudioSource driveMusic;
 
     void Start()
     {
-        currentLane = 0;
+		successText = GameObject.FindWithTag("SuccessText").GetComponent<Text>() as Text;
+		medalMusic = GameObject.FindWithTag ("MedalCeremonyAudio").GetComponent<AudioSource> () as AudioSource;
+		driveMusic = GameObject.FindWithTag ("DriveMusic").GetComponent<AudioSource> () as AudioSource;
+
+		successText.enabled = false;
+		currentLane = 0;
         minLane = 0;
         maxLane = 5;
     }
@@ -104,6 +114,19 @@ public class Player : MonoBehaviour {
 			}
 			case "EndLine": 
 			{
+				successText.enabled = true;
+				
+			if (Application.loadedLevel == 5) {
+				driveMusic.Stop();
+				medalMusic.Play ();
+			}
+
+				break;
+			}
+			case "NextLevelTransitionLine": {
+				
+				successText.enabled = false;
+
 				if (Application.loadedLevel == 2) {
 					Application.LoadLevel(3);
 				} else if (Application.loadedLevel == 3) {
@@ -117,6 +140,7 @@ public class Player : MonoBehaviour {
 			}
         }
     }
+	
 
     private void changeLane(int direction)
     {
