@@ -15,17 +15,17 @@ public class Alligator : MonoBehaviour {
         LeftEdge += transform.position.x;
     }
 	
-	void FixedUpdate () {
+	void Update () {
         Vector3 pos = transform.position;
         pos.x += speed * Time.deltaTime;
         transform.position = pos;
-        if(pos.x <= LeftEdge){
-            transform.Rotate(0f, 180f, 0f);
+        if(pos.x < LeftEdge){
             speed = Mathf.Abs(speed); //Move right
-        }
-        else if(pos.x >= RightEdge){
             transform.Rotate(0f, 180f, 0f);
+        }
+        else if(pos.x > RightEdge){
             speed = -Mathf.Abs(speed); //Move left
+            transform.Rotate(0f, 180f, 0f);
         }
 	}
 }
