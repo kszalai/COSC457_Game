@@ -168,11 +168,11 @@ public class Player : MonoBehaviour {
         Music.Play();
         
 
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(5);
 
         SuccessText.enabled = false;
 
-        if (Application.loadedLevel == numberOfScenes)
+        if (Application.loadedLevel == numberOfScenes-1)
         {
             Application.LoadLevel(0);
         }
