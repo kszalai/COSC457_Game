@@ -9,9 +9,9 @@ public class SettingsMenuScript : MonoBehaviour {
 	public Button hardButton;
 	public Button cancelButton;
     
-    private const int easy = 0;
-    private const int normal = 1;
-    private const int hard = 2;
+    private const int easy = 1;
+    private const int normal = 2;
+    private const int hard = 3;
 
 	private GameObject Lev1;
 	
