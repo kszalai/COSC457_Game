@@ -93,7 +93,7 @@ public class Player : MonoBehaviour {
                 case "Alligator":
                 {
                     //print("Hit by Alligator");
-                    PlayerHealth.TakeDamage(25);
+                    PlayerHealth.ChangeHealth(-25);
                     changeLane(1);
                     break;
                 }
@@ -101,21 +101,21 @@ public class Player : MonoBehaviour {
                 {
                     //print("Hit by CokeCan");
                     Destroy(other.gameObject);
-                    PlayerHealth.TakeDamage(10);
+                    PlayerHealth.ChangeHealth(-10);
                     break;
                 }
                 case "CokeMachine":
                 {
                     //print("Hit by CokeMachine");
                     changeLane(1);
-                    PlayerHealth.TakeDamage(5);
+                    PlayerHealth.ChangeHealth(-5);
                     break;
                 }
                 case "Gopher":
                 {
                     //print("Hit by Gopher");
                     changeLane(1);
-                    PlayerHealth.TakeDamage(25);
+                    PlayerHealth.ChangeHealth(-25);
                     break;
                 }
                 case "Pond":
@@ -133,7 +133,7 @@ public class Player : MonoBehaviour {
                 case "Tees":
                 {
                     //print("Hit by Tees");
-                    PlayerHealth.TakeDamage(50);
+                    PlayerHealth.ChangeHealth(-50);
                     break;
                 }
                 case "EndLine":
@@ -180,5 +180,10 @@ public class Player : MonoBehaviour {
         {
             Application.LoadLevel(Application.loadedLevel + 1);
         }
+    }
+
+    public void setCurrentLane(int lane)
+    {
+        currentLane = lane;
     }
 }

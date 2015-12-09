@@ -18,11 +18,14 @@ public class PlayerHealth : MonoBehaviour {
     public bool Damaged;
     private int DamageFlashCount = 0;
 
+    Player Player;
+
     void Awake()
     {
         CurrentHealth = StartingHealth;
         DefaultCameraStart = GameCamera.transform.position;
         DefaultPlayerStart = transform.position;
+        Player = GetComponent<Player>();
     }
 	
 	void FixedUpdate()
@@ -56,13 +59,24 @@ public class PlayerHealth : MonoBehaviour {
     }
 
     //Other scripts and components call this function
-    public void TakeDamage(int amount)
+    public void ChangeHealth(int amount)
     {
         //Player took damage, blink player
         Damaged = true;
 
         //Take away health
-        CurrentHealth -= amount;
+        if((CurrentHealth + amount) <= 0)
+        {
+            CurrentHealth = 0;
+        }
+        else if((CurrentHealth + amount) >= 100)
+        {
+            CurrentHealth = StartingHealth;
+        }
+        else
+        {
+            CurrentHealth += amount;
+        }
 
         //Update slider in Game
         HealthSlider.value = CurrentHealth;
@@ -95,6 +109,7 @@ public class PlayerHealth : MonoBehaviour {
     {
         //Respawn at beginning of level where we died
         transform.position = DefaultPlayerStart;
+        Player.setCurrentLane(0);
 
         //Move GameCamera back to where player is
         GameCamera.transform.position = DefaultCameraStart;
@@ -103,9 +118,11 @@ public class PlayerHealth : MonoBehaviour {
         GolfCartModel.SetActive(true);
 
         //Give player full health again
-        CurrentHealth = StartingHealth;
+        ChangeHealth(StartingHealth);
 
         //Start camera at old speed it was at
         GameCamera.cameraSpeed = OldCameraSpeed;
+
+        IsDead = false;
     }
 }

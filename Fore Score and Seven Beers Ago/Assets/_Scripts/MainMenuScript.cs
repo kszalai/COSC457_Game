@@ -30,7 +30,7 @@ public class MainMenuScript : MonoBehaviour {
 
 	public void StartGame() {
 
-		Application.LoadLevel (SPIndexStart);
+		Application.LoadLevel (2);
 
 	}
 

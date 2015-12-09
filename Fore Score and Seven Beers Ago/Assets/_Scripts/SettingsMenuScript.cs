@@ -7,6 +7,7 @@ public class SettingsMenuScript : MonoBehaviour {
 	public Button easyButton;
 	public Button normalButton;
 	public Button hardButton;
+	public Button cancelButton;
 
 	private GameObject Lev1;
 	
@@ -22,6 +23,7 @@ public class SettingsMenuScript : MonoBehaviour {
 		easyButton = easyButton.GetComponent<Button> ();
 		normalButton = normalButton.GetComponent<Button> ();
 		hardButton = hardButton.GetComponent<Button> ();
+		cancelButton = cancelButton.GetComponent<Button> ();
 		
 	}
 	
@@ -32,20 +34,26 @@ public class SettingsMenuScript : MonoBehaviour {
 	
 	public void EasyGame() {
 		
-		Application.LoadLevel (SPIndexStart);
+		Application.LoadLevel (2);
 
 		
 	}
 	
 	public void NormalGame() {
 		
-		Application.LoadLevel (SPIndexStart);
+		Application.LoadLevel (2);
 		
 	}
 
 	public void HardGame() {
 
-		Application.LoadLevel (SPIndexStart);
+		Application.LoadLevel (2);
 	
+	}
+
+	public void CancelClick(){
+
+		Application.LoadLevel (0);
+
 	}
 }
