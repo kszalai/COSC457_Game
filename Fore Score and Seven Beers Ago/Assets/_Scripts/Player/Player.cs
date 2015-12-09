@@ -1,16 +1,29 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using System;
 
 public class Player : MonoBehaviour {
     public GameObject SP_Camera;
 
+    //TODO: This should be changed to be more dynamic in the future
+    public int numberOfMenus;
+    public int numberOfLevels;
+    private int numberOfScenes;
+
     private int currentLane;
     private int minLane;
     private int maxLane;
+
     public float minSpeed;
     public float restingSpeed;
     public float maxSpeed;
     private float desiredSpeed;
+    
+	private AudioSource Music;
+    public AudioClip MedalMusic;
+
+    private Text SuccessText;
 
     PlayerHealth PlayerHealth;
 
@@ -21,9 +34,16 @@ public class Player : MonoBehaviour {
 
     void Start()
     {
+        numberOfScenes = numberOfMenus + numberOfLevels;
+
         currentLane = 0;
         minLane = 0;
         maxLane = 5;
+
+        Music = GameObject.FindWithTag("Music").GetComponent<AudioSource>();
+        SuccessText = GameObject.FindWithTag("SuccessText").GetComponent<Text>();
+
+        SuccessText.enabled = false;
     }
 
     void Update()
@@ -71,51 +91,58 @@ public class Player : MonoBehaviour {
             switch (tag)
             {
                 case "Alligator":
-                    {
-                        print("Hit by Alligator");
-                        PlayerHealth.TakeDamage(25);
-                        changeLane(1);
-                        break;
-                    }
+                {
+                    //print("Hit by Alligator");
+                    PlayerHealth.TakeDamage(25);
+                    changeLane(1);
+                    break;
+                }
                 case "CokeCan":
-                    {
-                        print("Hit by CokeCan");
-                        Destroy(other.gameObject);
-                        PlayerHealth.TakeDamage(10);
-                        break;
-                    }
+                {
+                    //print("Hit by CokeCan");
+                    Destroy(other.gameObject);
+                    PlayerHealth.TakeDamage(10);
+                    break;
+                }
                 case "CokeMachine":
-                    {
-                        print("Hit by CokeMachine");
-                        changeLane(1);
-                        PlayerHealth.TakeDamage(5);
-                        break;
-                    }
+                {
+                    //print("Hit by CokeMachine");
+                    changeLane(1);
+                    PlayerHealth.TakeDamage(5);
+                    break;
+                }
                 case "Gopher":
-                    {
-                        print("Hit by Gopher");
-                        changeLane(1);
-                        PlayerHealth.TakeDamage(25);
-                        break;
-                    }
+                {
+                    //print("Hit by Gopher");
+                    changeLane(1);
+                    PlayerHealth.TakeDamage(25);
+                    break;
+                }
                 case "Pond":
-                    {
-                        print("Hit by Pond");
-                        desiredSpeed = minSpeed;
-                        break;
-                    }
+                {
+                    //print("Hit by Pond");
+                    desiredSpeed = minSpeed;
+                    break;
+                }
                 case "SandTrap":
-                    {
-                        print("Hit by SandTrap");
-                        desiredSpeed = minSpeed;
-                        break;
-                    }
+                {
+                    //print("Hit by SandTrap");
+                    desiredSpeed = minSpeed;
+                    break;
+                }
                 case "Tees":
-                    {
-                        print("Hit by Tees");
-                        PlayerHealth.TakeDamage(50);
-                        break;
-                    }
+                {
+                    //print("Hit by Tees");
+                    PlayerHealth.TakeDamage(50);
+                    break;
+                }
+                case "EndLine":
+                {
+                    //print("END LINE, BABY");
+                    gameObject.GetComponent<BoxCollider>().enabled = false;
+                    StartCoroutine(endLevel());
+                    break;
+                }
             }
         }
     }
@@ -131,6 +158,27 @@ public class Player : MonoBehaviour {
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
             currentLane--;
+        }
+    }
+
+    private IEnumerator endLevel()
+    {
+        SuccessText.enabled = true;
+        Music.clip = MedalMusic;
+        Music.Play();
+        
+
+        yield return new WaitForSeconds(5);
+
+        SuccessText.enabled = false;
+
+        if (Application.loadedLevel == numberOfScenes-1)
+        {
+            Application.LoadLevel(0);
+        }
+        else
+        {
+            Application.LoadLevel(Application.loadedLevel + 1);
         }
     }
 }
