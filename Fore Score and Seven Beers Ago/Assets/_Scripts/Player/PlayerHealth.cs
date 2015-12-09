@@ -122,5 +122,7 @@ public class PlayerHealth : MonoBehaviour {
 
         //Start camera at old speed it was at
         GameCamera.cameraSpeed = OldCameraSpeed;
+
+        IsDead = false;
     }
 }
