@@ -34,20 +34,20 @@ public class SettingsMenuScript : MonoBehaviour {
 	
 	public void EasyGame() {
 		
-		Application.LoadLevel (SPIndexStart);
+		Application.LoadLevel (2);
 
 		
 	}
 	
 	public void NormalGame() {
 		
-		Application.LoadLevel (SPIndexStart);
+		Application.LoadLevel (2);
 		
 	}
 
 	public void HardGame() {
 
-		Application.LoadLevel (SPIndexStart);
+		Application.LoadLevel (2);
 	
 	}
 
