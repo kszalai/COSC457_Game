@@ -100,7 +100,13 @@ public class Player : MonoBehaviour {
 
     void FixedUpdate()
     {
-        transform.position = new Vector3(transform.position.x + desiredSpeed, transform.position.y, transform.position.z);
+        if (Application.loadedLevelName == "SettingsMenu")
+        {
+            transform.Rotate(new Vector3(transform.rotation.x, transform.rotation.y + 5, transform.rotation.z));
+            transform.position = new Vector3(transform.position.x + desiredSpeed, transform.position.y, transform.position.z);
+        }
+        else
+            transform.position = new Vector3(transform.position.x + desiredSpeed, transform.position.y, transform.position.z);
     }
 
     void OnTriggerEnter (Collider other)
