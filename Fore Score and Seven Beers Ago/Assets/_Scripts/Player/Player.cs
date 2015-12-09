@@ -24,6 +24,7 @@ public class Player : MonoBehaviour {
     public AudioClip MedalMusic;
 
     private Text SuccessText;
+    public Text LoseText;
 	private Text ArrowText;
 
     PlayerHealth PlayerHealth;
@@ -43,6 +44,7 @@ public class Player : MonoBehaviour {
 
         Music = GameObject.FindWithTag("Music").GetComponent<AudioSource>();
         SuccessText = GameObject.FindWithTag("SuccessText").GetComponent<Text>();
+        LoseText = GameObject.FindWithTag("LoseText").GetComponent<Text>();
 		ArrowText = GameObject.FindWithTag ("UseArrowKeysText").GetComponent<Text> ();
 
         SuccessText.enabled = false;

@@ -93,6 +93,9 @@ public class PlayerHealth : MonoBehaviour {
         //Player is dead
         IsDead = true;
 
+        //Display Lost Text
+        Player.LoseText.enabled = true;
+
         //Stop camera from moving
         OldCameraSpeed = GameCamera.cameraSpeed;
         GameCamera.cameraSpeed = 0;
@@ -110,6 +113,9 @@ public class PlayerHealth : MonoBehaviour {
         //Respawn at beginning of level where we died
         transform.position = DefaultPlayerStart;
         Player.setCurrentLane(0);
+
+        //Disable Lost Text
+        Player.LoseText.enabled = false;
 
         //Move GameCamera back to where player is
         GameCamera.transform.position = DefaultCameraStart;
