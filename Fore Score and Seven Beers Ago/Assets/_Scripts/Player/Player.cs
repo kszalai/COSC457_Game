@@ -24,6 +24,7 @@ public class Player : MonoBehaviour {
     public AudioClip MedalMusic;
 
     private Text SuccessText;
+    public Text LoseText;
 
     PlayerHealth PlayerHealth;
 
@@ -42,6 +43,7 @@ public class Player : MonoBehaviour {
 
         Music = GameObject.FindWithTag("Music").GetComponent<AudioSource>();
         SuccessText = GameObject.FindWithTag("SuccessText").GetComponent<Text>();
+        LoseText = GameObject.FindWithTag("LoseText").GetComponent<Text>();
 
         SuccessText.enabled = false;
     }
