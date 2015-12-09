@@ -20,7 +20,7 @@ public class MainMenuScript : MonoBehaviour {
 		playButton = playButton.GetComponent<Button> ();
 		settingsButton = settingsButton.GetComponent<Button> ();
 		exitButton = exitButton.GetComponent<Button> ();
-        PlayerPrefs.SetInt("difficulty", 2);
+        PlayerPrefs.SetInt("difficulty", PlayerPrefs.GetInt("difficulty", 2));
 	
 	}
 	
