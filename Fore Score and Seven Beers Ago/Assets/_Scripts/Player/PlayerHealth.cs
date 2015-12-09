@@ -54,7 +54,7 @@ public class PlayerHealth : MonoBehaviour {
             AbeModel.SetActive(true);
         }
 
-        if (DamageFlashCount == 10)
+        if (DamageFlashCount == (20 / PlayerPrefs.GetInt("difficulty", 2))) //2, 1, and .5 seconds based on difficulty
         {
             CancelInvoke("FlashingDamage");
             Damaged = false;
