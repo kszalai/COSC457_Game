@@ -24,7 +24,7 @@ public class Player : MonoBehaviour {
     public AudioClip MedalMusic;
 
     private Text SuccessText;
-    private Text LoseText;
+    public Text LoseText;
 	private Text ArrowText;
 
     PlayerHealth PlayerHealth;
