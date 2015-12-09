@@ -7,7 +7,7 @@ public class SettingsMenuScript : MonoBehaviour {
 	public Button easyButton;
 	public Button normalButton;
 	public Button hardButton;
-	public Button cancelButton;
+	public Button backButton;
     
     private const int easy = 1;
     private const int normal = 2;
@@ -27,32 +27,35 @@ public class SettingsMenuScript : MonoBehaviour {
 		easyButton = easyButton.GetComponent<Button> ();
 		normalButton = normalButton.GetComponent<Button> ();
 		hardButton = hardButton.GetComponent<Button> ();
-		cancelButton = cancelButton.GetComponent<Button> ();
-		
-	}
+        backButton = backButton.GetComponent<Button> ();
+        setDifficulty(getDifficulty());
+
+    }
+
+    void OnLevelWasLoaded()
+    {
+        setDifficulty(getDifficulty());
+    }
 	
 	public void EasyGame() {
 		
-		Application.LoadLevel (2);
         setDifficulty(easy);
 		
 	}
 	
 	public void NormalGame() {
 		
-		Application.LoadLevel (2);
         setDifficulty(normal);
 
     }
 
 	public void HardGame() {
-
-		Application.LoadLevel (2);
+        
         setDifficulty(hard);
 
     }
 
-	public void CancelClick(){
+	public void BackClick(){
 
 		Application.LoadLevel (0);
 
@@ -65,6 +68,25 @@ public class SettingsMenuScript : MonoBehaviour {
 
     private void setDifficulty(int newDifficulty)
     {
+        easyButton.GetComponent<Outline>().effectColor = new Color(1, 1, 1);
+        normalButton.GetComponent<Outline>().effectColor = new Color(1, 1, 1);
+        hardButton.GetComponent<Outline>().effectColor = new Color(1, 1, 1);
+
+        switch (newDifficulty)
+        {
+            case 1:
+                easyButton.GetComponent<Outline>().effectColor = new Color(0, 0, 0);
+                break;
+
+            case 2:
+                normalButton.GetComponent<Outline>().effectColor = new Color(0, 0, 0);
+                break;
+
+            case 3:
+                hardButton.GetComponent<Outline>().effectColor = new Color(0, 0, 0);
+                break;
+        }
+
         PlayerPrefs.SetInt("difficulty", newDifficulty);
         PlayerPrefs.Save();
     }
