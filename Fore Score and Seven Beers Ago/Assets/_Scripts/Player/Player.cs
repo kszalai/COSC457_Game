@@ -48,22 +48,23 @@ public class Player : MonoBehaviour {
         minSpeed = minSpeed * PlayerPrefs.GetInt("difficulty", 2);
         maxSpeed = maxSpeed * PlayerPrefs.GetInt("difficulty", 2);
 
-        Music = GameObject.FindWithTag("Music").GetComponent<AudioSource>();
-        SuccessText = GameObject.FindWithTag("SuccessText").GetComponent<Text>();
-        LoseText = GameObject.FindWithTag("LoseText").GetComponent<Text>();
-
         try
         {
-		    ArrowText = GameObject.FindWithTag ("UseArrowKeysText").GetComponent<Text>();
+            Music = GameObject.FindWithTag("Music").GetComponent<AudioSource>();
+            SuccessText = GameObject.FindWithTag("SuccessText").GetComponent<Text>();
+            LoseText = GameObject.FindWithTag("LoseText").GetComponent<Text>();
+
+            ArrowText = GameObject.FindWithTag ("UseArrowKeysText").GetComponent<Text>();
             ArrowText.enabled = false;
             StartCoroutine(beginFirstLevel());
+
+            SuccessText.enabled = false;
         }
         catch(NullReferenceException e)
         {
             //ArrowText does not exist
+            //throw (e);
         }
-
-        SuccessText.enabled = false;
     }
 
     void Update()
