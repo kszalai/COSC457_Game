@@ -24,6 +24,7 @@ public class Player : MonoBehaviour {
     public AudioClip MedalMusic;
 
     private Text SuccessText;
+	private Text ArrowText;
 
     PlayerHealth PlayerHealth;
 
@@ -42,8 +43,12 @@ public class Player : MonoBehaviour {
 
         Music = GameObject.FindWithTag("Music").GetComponent<AudioSource>();
         SuccessText = GameObject.FindWithTag("SuccessText").GetComponent<Text>();
+		ArrowText = GameObject.FindWithTag ("UseArrowKeysText").GetComponent<Text> ();
 
         SuccessText.enabled = false;
+		ArrowText.enabled = false;
+
+		StartCoroutine(beginFirstLevel());
     }
 
     void Update()
@@ -160,6 +165,15 @@ public class Player : MonoBehaviour {
             currentLane--;
         }
     }
+
+	private IEnumerator beginFirstLevel() 
+	{
+		ArrowText.enabled = true;
+
+		yield return new WaitForSeconds (5);
+
+		ArrowText.enabled = false;
+	}
 
     private IEnumerator endLevel()
     {
