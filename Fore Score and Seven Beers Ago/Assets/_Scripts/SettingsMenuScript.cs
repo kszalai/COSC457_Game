@@ -8,6 +8,10 @@ public class SettingsMenuScript : MonoBehaviour {
 	public Button normalButton;
 	public Button hardButton;
 	public Button cancelButton;
+    
+    private const int easy = 1;
+    private const int normal = 2;
+    private const int hard = 3;
 
 	private GameObject Lev1;
 	
@@ -27,33 +31,41 @@ public class SettingsMenuScript : MonoBehaviour {
 		
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-	
 	public void EasyGame() {
 		
 		Application.LoadLevel (2);
-
+        setDifficulty(easy);
 		
 	}
 	
 	public void NormalGame() {
 		
 		Application.LoadLevel (2);
-		
-	}
+        setDifficulty(normal);
+
+    }
 
 	public void HardGame() {
 
 		Application.LoadLevel (2);
-	
-	}
+        setDifficulty(hard);
+
+    }
 
 	public void CancelClick(){
 
 		Application.LoadLevel (0);
 
 	}
+
+    private int getDifficulty()
+    {
+        return PlayerPrefs.GetInt("difficulty", normal);
+    }
+
+    private void setDifficulty(int newDifficulty)
+    {
+        PlayerPrefs.SetInt("difficulty", newDifficulty);
+        PlayerPrefs.Save();
+    }
 }

@@ -42,6 +42,12 @@ public class Player : MonoBehaviour {
         minLane = 0;
         maxLane = 5;
 
+        // SCALE SPEED WITH DIFFICULTY
+
+        restingSpeed = restingSpeed * PlayerPrefs.GetInt("difficulty", 2);
+        minSpeed = minSpeed * PlayerPrefs.GetInt("difficulty", 2);
+        maxSpeed = maxSpeed * PlayerPrefs.GetInt("difficulty", 2);
+
         Music = GameObject.FindWithTag("Music").GetComponent<AudioSource>();
         SuccessText = GameObject.FindWithTag("SuccessText").GetComponent<Text>();
         LoseText = GameObject.FindWithTag("LoseText").GetComponent<Text>();
@@ -62,7 +68,7 @@ public class Player : MonoBehaviour {
 
     void Update()
     {
-        //CHANGE LANES
+        // CHANGE LANES
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
