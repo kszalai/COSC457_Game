@@ -5,6 +5,7 @@ using System.Collections;
 public class PlayerHealth : MonoBehaviour {
 
     public GameObject GolfCartModel;
+    public GameObject AbeModel;
 
     public int StartingHealth = 100;
     public int CurrentHealth;
@@ -45,10 +46,12 @@ public class PlayerHealth : MonoBehaviour {
         if (DamageFlashCount % 2 == 1)
         {
             GolfCartModel.SetActive(false);
+            AbeModel.SetActive(false);
         }
         else
         {
             GolfCartModel.SetActive(true);
+            AbeModel.SetActive(true);
         }
 
         if (DamageFlashCount == 10)
@@ -100,10 +103,11 @@ public class PlayerHealth : MonoBehaviour {
         OldCameraSpeed = GameCamera.cameraSpeed;
         GameCamera.cameraSpeed = 0;
         GolfCartModel.SetActive(false);
+        AbeModel.SetActive(false);
 
         //Once we get reference to Game Time, check to see if we're out of time,
         //or about to be out of time by the time we respawn
-        
+
         //Wait for 5 seconds
         Invoke("Respawn", 5f);
     }
@@ -122,6 +126,7 @@ public class PlayerHealth : MonoBehaviour {
 
         //Turn back on our player
         GolfCartModel.SetActive(true);
+        AbeModel.SetActive(true);
 
         //Give player full health again
         ChangeHealth(StartingHealth);

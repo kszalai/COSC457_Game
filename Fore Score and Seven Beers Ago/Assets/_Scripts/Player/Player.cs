@@ -45,12 +45,19 @@ public class Player : MonoBehaviour {
         Music = GameObject.FindWithTag("Music").GetComponent<AudioSource>();
         SuccessText = GameObject.FindWithTag("SuccessText").GetComponent<Text>();
         LoseText = GameObject.FindWithTag("LoseText").GetComponent<Text>();
-		ArrowText = GameObject.FindWithTag ("UseArrowKeysText").GetComponent<Text> ();
+
+        try
+        {
+		    ArrowText = GameObject.FindWithTag ("UseArrowKeysText").GetComponent<Text>();
+            ArrowText.enabled = false;
+            StartCoroutine(beginFirstLevel());
+        }
+        catch(NullReferenceException e)
+        {
+            //ArrowText does not exist
+        }
 
         SuccessText.enabled = false;
-		ArrowText.enabled = false;
-
-		StartCoroutine(beginFirstLevel());
     }
 
     void Update()
