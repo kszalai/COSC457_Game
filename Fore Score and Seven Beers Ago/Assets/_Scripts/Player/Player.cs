@@ -199,6 +199,8 @@ public class Player : MonoBehaviour {
 
     private IEnumerator endLevel()
     {
+        if (Application.loadedLevel == numberOfScenes - 1)
+            SuccessText.text = "Great job!\nYou found the scientists!";
         SuccessText.enabled = true;
         Music.clip = MedalMusic;
         Music.Play();
